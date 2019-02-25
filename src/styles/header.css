@@ -1,0 +1,52 @@
+
+.header-container {
+    background-color: #84b3ad;
+    height: 76px;
+    top: 0;
+    margin-bottom: 5px;
+}
+
+.nav-container {
+    height: 30px;
+    background-color: #84b3ad;
+    display: block
+
+}
+
+ul {
+    padding: 0;
+    height: 40px;
+    line-height: 30px;
+    background-color: #84b3ad;
+    text-align: center
+}
+
+li {
+    display: inline-block;
+    width: 100px;
+    margin: 0 5px;
+    padding: 5px 0;
+    cursor: pointer;
+    text-align: center
+}
+
+li:hover {
+    color: palevioletred;
+    background: #135e3e;
+    /* padding: 5px 0 */
+}
+
+.welcome {
+    width: 500px;
+    color: rgb(226, 90, 12);
+    font-size: 25px
+}
+
+.logo {
+    display: inline-block;
+    align-items: center
+}
+
+.link {
+    text-decoration: none
+}
