@@ -3,12 +3,17 @@
     width: 20%;
     color: white;
     background-color: grey;
-    vertical-align: middle
+    vertical-align: middle;
+    border-radius: 10px
 }
 
-/* .form-container {
-    vertical-align: middle
-} */
+.form-container {
+    size: 100%
+}
+
+input {
+    margin-bottom: 10px
+}
 
 input[type=submit] {
     display: inline;
@@ -35,5 +40,6 @@ input[type=submit]:hover {
     background-color: red;
     color: white;
     display: inline-block;
-    width: 300px
+    width: 300px;
+    border-radius: 5px
 }

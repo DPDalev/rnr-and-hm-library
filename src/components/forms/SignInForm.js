@@ -94,7 +94,7 @@ export default class LoginForm extends Component {
         return (
             <div>
                 <div className='error'>{this.state.error}</div>
-                <div>
+                <div className='form-container'>
                     <form onSubmit={this.handleSubmit} className='form'>
                         <label>
                             Username:

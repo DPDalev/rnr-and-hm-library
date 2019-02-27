@@ -98,8 +98,8 @@ export default class LoginForm extends Component {
                             type='submit'
                             value='Enter'
                         />
-                    </form>
                         <p className='signinSentence'>If you don't have an account, please, sign in <Link to='/signin'>here.</Link></p>
+                    </form>
                 </div>
                 
             </div>
