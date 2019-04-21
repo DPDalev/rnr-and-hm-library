@@ -11,15 +11,15 @@ The functionalities of the project are as follows:
 * Loggin out from the system - Log out
 * Two roles: regular User and Administrator (Admin)
 * The Admin can manage the albums by:
-** Adding by his idea or upon request from a User
-** Editing
-** Deleting
+  * Adding by his idea or upon request from a User
+  * Editing
+  * Deleting
 
 * The User can:
-** Browse the albums
-** Add albums to his Favourites list
-** Delete albums from his Favourites list
-** Send requests to the Admin
+  * Browse the albums
+  * Add albums to his Favourites list
+  * Delete albums from his Favourites list
+  * Send requests to the Admin
 
 
 ## Idea of the project
