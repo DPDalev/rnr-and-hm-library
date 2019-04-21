@@ -1,22 +1,35 @@
-/* .Footer {
-    margin: 0px;
-    color: white;
-    padding: 5px;
-    background: rgb(20, 20, 71);
-    position: bottom
-  } */
-  
-  .FooterLink {
-    text-decoration: none;
-    font-size: 15px
-  }
-
-  .Footer {
-    position: absolute-bottom;
+  footer {
+    color: red;
+    position: absolute;
+    /* position: fixed; */
     right: 0;
     left: 0;
-    bottom: 0;
-    padding: 1rem;
+    bottom: -3;
+    padding: 0;
     background-color: #efefef;
     text-align: center;
+  }
+
+  #footer-text-container {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 200px
+  }
+
+  #footer-text-main {
+    margin: 0;
+    padding: 10px
+  }
+
+  #footer-text{
+    margin: 0;
+    padding: 0
+  }
+
+  #footer-text-title{
+    text-align: left;
+
+    margin: 0;
+    padding: 0
   }

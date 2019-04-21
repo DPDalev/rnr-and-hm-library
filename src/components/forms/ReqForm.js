@@ -1,82 +1,66 @@
-import React, { Component } from 'react';
-import requester from './../../infrastructure/requester'
-import observer from './../../infrastructure/observer'
+import React, { Component } from 'react'
+import requester from '../../infrastructure/requester'
+import observer from '../../infrastructure/observer'
 
-export default class AddAlbum extends Component {
+
+export default class EditAlbum extends Component {
 
     constructor (props) {
         super (props)
 
         this.state = {
-            'album': {
+            request: {
                 'groupName': '',
                 'albumName': '',
                 'year': '',
                 'artwork': ''
-            },
+            }
         }
     }
 
-    // Handles the change events in the form
-    
     handleChange = (event) => {
 
-        const album = this.state.album
+        const request = this.state.request
         const name = event.target.name
         const value = event.target.value
 
-        album[name] = value
-        this.setState({album});
+        request[name] = value
+        this.setState({request});
         
         //DEBUG
-        console.log(this.state.album)
-    }
+        console.log(this.state.request)
 
-    // Handles the submission of the form
+    }
     
     handleSubmit = (event) => {
+
         event.preventDefault()
 
-        let albumdata = {
-            'GroupName': this.state.album.groupName,
-            'AlbumName': this.state.album.albumName,
-            'Year': this.state.album.year,
-            'Artwork': this.state.album.artwork
+        let data = {
+            'UserID': sessionStorage.getItem('id'),
+            'UserName': sessionStorage.getItem('username'),
+            'GroupName': this.state.request.groupName,
+            'AlbumName': this.state.request.albumName,
+            'Year': this.state.request.year,
+            'Artwork': this.state.request.artwork
         }
 
-        requester.post('appdata', 'albums', 'kinvey', albumdata)
+        console.log(data)
+
+        requester.post('appdata', 'requests', 'kinvey', data)
             .then(() => {
+
                 this.props.history.push('/allalbums')
+                
+                observer.trigger(observer.events.notification, {type: 'success', message: 'Your request to the Admin was sent.'})
+                setTimeout( function () {observer.trigger(observer.events.hide)}, 3000)
+
+                console.log('Аман!')
             })
             .catch((error) => {
                 console.log(error)
             })
-    }
 
-    // Function to add albums to the database
-    
-    addAlbum = (event) => {
-
-        event.preventDefault()
-                
-        let groupName = document.getElementById('groupName').value
-        let albumName = document.getElementById('albumName').value
-        let year = document.getElementById('year').value
-        let artwork = document.getElementById('artwork').value
-
-        let data = {
-            'GroupName': groupName,
-            'Year': year,
-            'AlbumName': albumName,
-            'Artwork': artwork
-        }
-
-        requester.post('appdata', 'albums', 'kinvey', data)
-            .then(this.props.history.push('/allalbums'))
-            .catch((error) => console.log(error))
-
-        observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully added new album!'})
-        setTimeout(function () {observer.trigger(observer.events.hide)}, 4000)
     }
 
     render () {
@@ -84,6 +68,7 @@ export default class AddAlbum extends Component {
             <div>
                 <br />
                 <div>
+                <h3>Please send request to the Admin</h3>
                     <form onSubmit={this.handleSubmit} className='form'>
                         Group Name:
                         <br />
@@ -123,7 +108,7 @@ export default class AddAlbum extends Component {
                         <br />
                         <input
                             type='submit'
-                            value='Enter'
+                            value='Submit'
                         />
                     </form>
                 </div>

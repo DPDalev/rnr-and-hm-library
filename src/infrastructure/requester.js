@@ -14,7 +14,9 @@ function makeAuth(type) {
 // Creates request object to kinvey
 function makeRequest(method, module, endpoint, auth, query) {
     let url = kinveyBaseUrl + module + '/' + kinveyAppKey + '/' + endpoint;
-    console.log('Url from requester before sending request: ', method, url)
+    
+    console.log("Make request Url: ", url)
+    
     if (query) {
         url += '?query=' + JSON.stringify(query);
     }
@@ -37,6 +39,8 @@ function get (module, endpoint, auth, query) {
 function post (module, endpoint, auth, data) {
     let req = makeRequest('POST', module, endpoint, auth);
     req.data = data;
+    console.log("Request: ", req)
+    console.log("Req data: ", req.data)
     return $.ajax(req);
 }
 

@@ -9,6 +9,8 @@ const DEFAULT_STATE = {
     loading: null
 }
 
+// Creates the general notifications
+
 export default class Notification extends Component {
     constructor(props) {
         super(props);
@@ -46,5 +48,4 @@ export default class Notification extends Component {
             return null;
         }
     }
-
 }

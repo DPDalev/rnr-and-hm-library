@@ -1,5 +1,69 @@
-.App {
+body {
+  position: relative;
+  margin: 0;
+  height: 100%;
   text-align: center;
-  /* background-image: url('Iron Maiden Life After Death.jpg'); */
+  background: url('./images/Iron\ Maiden\ Life\ After\ Death_.jpg') no-repeat;
+  background-size:  100%;
+  background-attachment: fixed
+}
+
+.title {
+  margin: 0;
+  display: inline-block;
+  padding: 10px;
+  color: red;
+  background-color: rgb(251, 252, 250);
+  border: solid 5px red;
+  border-radius: 10px
+}
+
+.iframe {
+  margin-top: 20px
+}
+
+img {
+  margin:0;
+  height: 400px;
+  width: auto;
+  border: solid 5px red;
+  border-radius: 5px;
+  transition: all .3s ease-in-out
+}
+
+.link {
+  margin: 0 15px;
+  padding: 12px;
+  height: 40px;
+  width: 100px;
+  color: rgb(112, 216, 15);
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold
+}
+
+.link:hover {
+  color: white;
+  background: blueviolet;
+}
+
+.welcome {
+  margin-right: 100px;
+  height: 40px;
+  width: 500px;
+  color: white;
+  font-size: 25px
+}
+
+.emptyListMessage {
+  margin: 200px;
+  display: inline-block;
+  padding: 10px;
+  color: rgb(251, 252, 250);
+  background-color: red;
+  border: solid 5px red;
+  border-radius: 10px
 }
 

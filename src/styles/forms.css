@@ -1,4 +1,5 @@
 .form {
+    margin-top: 100px;
     display: inline-block;
     width: 20%;
     color: white;
@@ -9,6 +10,10 @@
 
 .form-container {
     size: 100%
+}
+
+.form-subcontainer {
+    min-height: 718px;
 }
 
 input {

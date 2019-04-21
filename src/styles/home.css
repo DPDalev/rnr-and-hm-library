@@ -4,12 +4,14 @@ body {
 }
 
 .home {
-    min-height: 779px
+    margin-top: 200px;
+    /* min-height: 100% */
 }
 
 article {
-    width: 300px;
     height: 300px;
+    width: 300px;
+    /* display: inline-block; */
     border-radius: 15px;
     content: center;
     padding: 25px;
@@ -17,24 +19,17 @@ article {
     box-shadow: 10px 11px 35px -14px rgba(0, 0, 0, 1);
 }
 
-article:hover {
-    /* cursor: none; */
-    /* transform: scale(1.2); */
-    transition: all .3s ease-in-out
-}
-
 .MainArticle {
+    margin: auto;
     height: 150px;
-
-    margin: 30px;
-    width:900px;
-    display: inline-block
+    width:900px
 }
 
 .subarticle {
-    display: inline-block;
     margin: 30px;
-    height: 300px
+    height: 200px;
+    display: inline-block;
+    vertical-align: top
 }
 
 h1 {
@@ -50,8 +45,3 @@ p {
     text-align: justify
 }
 
-img {
-    width: 200px;
-    margin: 15px;
-    float: left
-}

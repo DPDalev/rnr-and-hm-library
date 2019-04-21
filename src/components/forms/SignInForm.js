@@ -41,14 +41,10 @@ export default class LoginForm extends Component {
         sessionStorage.clear()
 
         if (this.state.user.username.length < 4) {
-            // this.setState({
-            //     error: 'Username must be at least 4 symbols'
-            // })
-
-            observer.trigger(observer.events.notification, {type: 'error', message: 'Username must be at least 4 symbols!'})
-            setTimeout(function () {observer.trigger(observer.events.hide)}, 4000)
+            this.setState({
+                error: 'Username must be at least 4 symbols'
+            })
             return
-            
         } else if ( this.state.user.password.length < 6 ) {
             this.setState({
                 error: 'Password must be at least 6 symbols'
@@ -60,10 +56,6 @@ export default class LoginForm extends Component {
             })
             return
         }
-
-        console.log("userdata:")
-        console.log(this.state.user)
-        
         
         let userdata = {
             'username': this.state.user.username,
@@ -72,29 +64,31 @@ export default class LoginForm extends Component {
 
         requester.post('user', '', 'basic', userdata)
         .then((data) => {
-            console.log(data);
             sessionStorage.setItem('authtoken', data._kmd.authtoken);
             sessionStorage.setItem('username', this.state.user.username);
             this.props.history.push('/home')
         })
         .catch((error) => {
-            console.log(error.status);
             if ( error.status === 409 ) {
                 this.setState({
-                    error: "This suername is already taken."
+                    error: "This username is already taken."
                 })
             }
         })
 
         observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully signed in!'})
-        setTimeout(function () {observer.trigger(observer.events.hide)}, 4000)
+        setTimeout(function () {observer.trigger(observer.events.hide)}, 3000)
     }
 
     render () {
+
+        const title = <div><h1 className='title'>Sign in:</h1></div>
+
         return (
             <div>
+                {title}
                 <div className='error'>{this.state.error}</div>
-                <div className='form-container'>
+                <div  className='form-subcontainer'>
                     <form onSubmit={this.handleSubmit} className='form'>
                         <label>
                             Username:
