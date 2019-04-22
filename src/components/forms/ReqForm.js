@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import requester from '../../infrastructure/requester'
 import observer from '../../infrastructure/observer'
 
+import './../../styles/allAlbums.css'
 
 export default class EditAlbum extends Component {
 
@@ -64,11 +65,14 @@ export default class EditAlbum extends Component {
     }
 
     render () {
+
+        const title = <div><h1 className='title'>Send request to the Admin</h1></div>
+
         return (
             <div>
                 <br />
                 <div>
-                <h3>Please send request to the Admin</h3>
+                    {title}
                     <form onSubmit={this.handleSubmit} className='form'>
                         Group Name:
                         <br />
