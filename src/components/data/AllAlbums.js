@@ -63,10 +63,13 @@ export default class AllAlbums extends Component {
     }
 
     componentDidMount () {
+        observer.trigger(observer.events.notification, {type: 'loading', message: 'Loading...'})
+        
         requester.get('appdata', 'albums', 'kinvey', '')
-            .then(data => {
-                this.setState({albums: data})
-            })
+        .then(data => {
+            this.setState({albums: data})
+            observer.trigger(observer.events.hide)
+        })
     }
 
     render () {

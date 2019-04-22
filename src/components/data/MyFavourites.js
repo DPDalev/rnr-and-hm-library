@@ -13,46 +13,34 @@ export default class MyFavourites extends Component {
         }
     }
 
+    // Gets favourites IDs from Kinvey user's profile
+    
     getFavouritesIds = (userid) => {
-
         requester.get('user', userid, 'kinvey', '')
-
         .then(user => {
-
-            console.log(user.favourites)
-
-                        this.setState({
+            this.setState({
                 myFavouritesIds: user.favourites
             })
         })
-
-        console.log('GFIds 1) albums: ', this.state.myFavouritesIds)
-
     }
 
+    // Gets albums from Kinvey Albums, checks favourites IDs and pushes for rendering
+    
     getAlbumsFromKinvey = () => {
         let bufferOfAlbums = []
         
         requester.get('appdata', 'albums', 'kinvey', '')
         .then(res => {
-
             let albums = res || [];
-
-            console.log('GAFK 1) albums: ', albums)
-
             if(albums === []) {
                 bufferOfAlbums = []
             } else {
-                console.log('GAFK 2) albums: ', albums)
-
                 albums.forEach(album => {
-                    console.log("GAFK Element: ", album._id)
                     if(this.state.myFavouritesIds.includes(album._id)) {
                         bufferOfAlbums.push(album)
                     }
                 });
             }
-
             this.setState({
                     albumsToRender: bufferOfAlbums
                 })
