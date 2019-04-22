@@ -53,7 +53,6 @@ export default class MyFavourites extends Component {
         let userid = sessionStorage.getItem('id')
 
         observer.trigger(observer.events.notification, {type: 'loading', message: 'Loading...'})
-                //setTimeout( function () {observer.trigger(observer.events.hide)}, 3000)
 
         requester.get('user', userid, 'kinvey', '')
 

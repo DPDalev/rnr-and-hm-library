@@ -13,6 +13,8 @@ export default class AllRequests extends Component {
         
     }
 
+    // Deletes user's request from the list
+
     deleteRequest = (requestid) => {
 
         let correctedRequests = []
@@ -62,8 +64,8 @@ export default class AllRequests extends Component {
 							<th style={{ 'width': '30%' }}>Artwork</th>
 							<th style={{ 'width': '30%' }}></th>
 						</tr>
-                        <br />
 					</thead>
+                        <br />
                     <tbody>
                         {requests}
                     </tbody>

@@ -45,9 +45,8 @@ function get (module, endpoint, auth, query) {
             'Content-Type': 'application/json'
         }
     })
-    .then(res => res.json())   
+    .then(res => res.json())
 }
-
 
 // Function to return PUT promise
 function update (module, endpoint, auth, data) {
@@ -65,7 +64,7 @@ function update (module, endpoint, auth, data) {
     .then(res => res.json())
 }
 
-// // Function to return DELETE promise
+// Function to return DELETE promise
 function remove (module, endpoint, auth) {
     let url = makeUrl(module, endpoint)
 

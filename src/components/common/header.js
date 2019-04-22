@@ -10,7 +10,8 @@ export default class Header extends Component {
     // Log out function
 
     logout = () => {
-        requester.post('user', '_logout', '', '');
+        requester.post('user', '_logout', '', '')
+        
         sessionStorage.clear();
 
         observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully logged out!'})

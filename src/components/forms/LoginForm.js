@@ -42,29 +42,25 @@ export default class LoginForm extends Component {
         }
 
         requester.post('user', 'login', 'basic', userdata)
-            // .then(res => res.json())
             .then((data) => {
-                sessionStorage.setItem('authtoken', data._kmd.authtoken);
-                sessionStorage.setItem('username', this.state.user.username);
-                sessionStorage.setItem('id', data._id)
-                
-                this.props.history.push('/home')
 
-                observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully logged in!'})
-                setTimeout( function () {observer.trigger(observer.events.hide)}, 3000)
-            })
-            .catch((error) => {
-                console.log("Error: ", error.status);
-                if ( error.status === 401 ) {
+                console.log("Data: ", data.error)
+
+                if(data.error) {
                     this.setState({
                         error: 'Invalid credentials!'
                     })
+                } else {
+                    sessionStorage.setItem('authtoken', data._kmd.authtoken);
+                    sessionStorage.setItem('username', this.state.user.username);
+                    sessionStorage.setItem('id', data._id)
+                    
+                    this.props.history.push('/home')
+
+                    observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully logged in!'})
+                    setTimeout( function () {observer.trigger(observer.events.hide)}, 3000)
                 }
             })
-    }
-
-    componentWillUnmount () {
-        
     }
 
     render () {

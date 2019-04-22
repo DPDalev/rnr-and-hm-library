@@ -16,6 +16,8 @@ export default class AllAlbums extends Component {
         }
     }
 
+    // Deletes album from the collection
+
     deleteAlbum = (albumid) => {
 
         let correctedAlbums = []
@@ -30,6 +32,8 @@ export default class AllAlbums extends Component {
                 console.log(error)
             })
     }
+
+    // Adds album to user's Favourites list
     
     addToFavourites = (albumid) => {
 
@@ -43,11 +47,8 @@ export default class AllAlbums extends Component {
                 let localFavourites = data.favourites || [];
 
                 if(localFavourites.includes(albumid)) {
-
                     observer.trigger(observer.events.notification, {type: 'error', message: 'This album is already on your Favourites list!'})
                     setTimeout(function () {observer.trigger(observer.events.hide)}, 2000) 
-
-                    console.log('This album is already in your favourites')
                 } else {
                     localFavourites.push(albumid)
                     let data = {
@@ -58,7 +59,6 @@ export default class AllAlbums extends Component {
 
                     requester.update('user', sessionStorage.getItem('id'), 'kinvey', data)
                 }
-
             })
     }
 

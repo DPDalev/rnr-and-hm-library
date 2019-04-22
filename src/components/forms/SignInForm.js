@@ -64,20 +64,27 @@ export default class LoginForm extends Component {
 
         requester.post('user', '', 'basic', userdata)
         .then((data) => {
-            sessionStorage.setItem('authtoken', data._kmd.authtoken);
-            sessionStorage.setItem('username', this.state.user.username);
-            this.props.history.push('/home')
-        })
-        .catch((error) => {
-            if ( error.status === 409 ) {
+
+            if(data.error) {
                 this.setState({
-                    error: "This username is already taken."
+                    error: 'This username is already taken.'
                 })
+            } else {
+                sessionStorage.setItem('authtoken', data._kmd.authtoken);
+                sessionStorage.setItem('username', this.state.user.username);
+                this.props.history.push('/home')
+                observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully signed in!'})
+                setTimeout(function () {observer.trigger(observer.events.hide)}, 3000)
             }
         })
+        // .catch((error) => {
+        //     if ( error.status === 409 ) {
+        //         this.setState({
+        //             error: "This username is already taken."
+        //         })
+        //     }
+        // })
 
-        observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully signed in!'})
-        setTimeout(function () {observer.trigger(observer.events.hide)}, 3000)
     }
 
     render () {
