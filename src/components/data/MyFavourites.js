@@ -30,34 +30,30 @@ export default class MyFavourites extends Component {
         let bufferOfAlbums = []
         
         requester.get('appdata', 'albums', 'kinvey', '')
-        .then(res => {
-            let albums = res || [];
-            if(albums === []) {
-                bufferOfAlbums = []
-            } else {
+        .then(albums => {
                 albums.forEach(album => {
                     if(this.state.myFavouritesIds.includes(album._id)) {
                         bufferOfAlbums.push(album)
                     }
                 });
-            }
             this.setState({
                     albumsToRender: bufferOfAlbums
                 })
             })
-    
     }
 
-    componentWillMount () {
+    componentDidMount () {
 
         let userid = sessionStorage.getItem('id')
+
+        console.log('userid: ', userid)
 
         observer.trigger(observer.events.notification, {type: 'loading', message: 'Loading...'})
 
         requester.get('user', userid, 'kinvey', '')
 
         .then(user => {
-
+            console.log("user.favourites", user.favourites)
             this.setState({
                 myFavouritesIds: user.favourites
             })
@@ -66,22 +62,21 @@ export default class MyFavourites extends Component {
             
             let bufferOfAlbums = []
         
+            // Gets all albums for comparison with Favourites
+            
             requester.get('appdata', 'albums', 'kinvey', '')
-                .then(res => {
+                .then(albums => {
 
                     observer.trigger(observer.events.hide)
         
-                    let albums = res || [];
+                    console.log("Albums bbb: ", albums)
         
-                    if(albums === []) {
-                        bufferOfAlbums = []
-                    } else {
                         albums.forEach(album => {
                             if(this.state.myFavouritesIds.includes(album._id)) {
                                 bufferOfAlbums.push(album)
                             }
                         });
-                    }
+
                         this.setState({
                             albumsToRender: bufferOfAlbums
                         })

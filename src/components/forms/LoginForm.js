@@ -28,8 +28,6 @@ export default class LoginForm extends Component {
 
         user[name] = value
         this.setState({user});
-        //DEBUG
-        //console.log(this.state.user)
     }
 
     handleSubmit = event => {
@@ -51,6 +49,9 @@ export default class LoginForm extends Component {
                         error: 'Invalid credentials!'
                     })
                 } else {
+
+                    console.log('Data.id: ', data._id)
+
                     sessionStorage.setItem('authtoken', data._kmd.authtoken);
                     sessionStorage.setItem('username', this.state.user.username);
                     sessionStorage.setItem('id', data._id)

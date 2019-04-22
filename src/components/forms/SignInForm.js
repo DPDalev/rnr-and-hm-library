@@ -59,7 +59,8 @@ export default class LoginForm extends Component {
         
         let userdata = {
             'username': this.state.user.username,
-            'password': this.state.user.password
+            'password': this.state.user.password,
+            'favourites': []
         }
 
         requester.post('user', '', 'basic', userdata)
@@ -70,21 +71,15 @@ export default class LoginForm extends Component {
                     error: 'This username is already taken.'
                 })
             } else {
-                sessionStorage.setItem('authtoken', data._kmd.authtoken);
-                sessionStorage.setItem('username', this.state.user.username);
+                sessionStorage.setItem('authtoken', data._kmd.authtoken)
+                sessionStorage.setItem('username', this.state.user.username)
+                sessionStorage.setItem('id', data._id)
+
                 this.props.history.push('/home')
                 observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully signed in!'})
                 setTimeout(function () {observer.trigger(observer.events.hide)}, 3000)
             }
         })
-        // .catch((error) => {
-        //     if ( error.status === 409 ) {
-        //         this.setState({
-        //             error: "This username is already taken."
-        //         })
-        //     }
-        // })
-
     }
 
     render () {

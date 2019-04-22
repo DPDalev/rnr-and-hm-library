@@ -73,6 +73,10 @@ export default class EditAlbum extends Component {
                 <br />
                 <div>
                     {title}
+                        <p>In this section, you can send request to the Admin if you would wish some album to be added to the library</p>
+                        <p>It is not necessary to provide precise and full information. In the fields of the form you can write description if you are not sure about the information.</p>
+                        <p>In the field "Artwork", it is supposed a link to the image to bu filled in, but this is not obligatory.</p>
+                        <p>The Admin has the privilege to collect and check the information about the desired album, find the artwork and add the album, requested by you.</p>
                     <form onSubmit={this.handleSubmit} className='form'>
                         Group Name:
                         <br />

@@ -51,9 +51,16 @@ export default class AllAlbums extends Component {
                     setTimeout(function () {observer.trigger(observer.events.hide)}, 2000) 
                 } else {
                     localFavourites.push(albumid)
+
+                    console.log('Albumid: ', albumid)
+
                     let data = {
                         'favourites': localFavourites
                     }
+
+                    console.log('data: ', data)
+
+
                     observer.trigger(observer.events.notification, {type: 'success', message: 'This album was added to your Favourites!'})
                     setTimeout(function () {observer.trigger(observer.events.hide)}, 2000)    
 
