@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import requester from './../../infrastructure/requester'
+import requester from '../../infrastructure/requester'
 import observer from './../../infrastructure/observer'
 
 export default class MyFavourites extends Component {

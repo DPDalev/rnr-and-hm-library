@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const kinveyBaseUrl = "https://baas.kinvey.com/";
 const kinveyAppKey = "kid_BylF_JFlV";
 const kinveyAppSecret = "c4455bd0830e4b84ad004532332cf420";
@@ -11,50 +9,75 @@ function makeAuth(type) {
         :  'Kinvey ' + sessionStorage.getItem('authtoken');
 }
 
-// Creates request object to kinvey
-function makeRequest(method, module, endpoint, auth, query) {
+// Creates the URL
+function makeUrl(module, endpoint, query) {
     let url = kinveyBaseUrl + module + '/' + kinveyAppKey + '/' + endpoint;
-    
-    console.log("Make request Url: ", url)
-    
     if (query) {
         url += '?query=' + JSON.stringify(query);
     }
-
-    return {
-        method,
-        url: url,
-        headers: {
-            'Authorization': makeAuth(auth),
-        }
-    };
-}
-
-// Function to return GET promise
-function get (module, endpoint, auth, query) {
-    return $.ajax(makeRequest('GET', module, endpoint, auth, query));
+    return url
 }
 
 // Function to return POST promise
 function post (module, endpoint, auth, data) {
-    let req = makeRequest('POST', module, endpoint, auth);
-    req.data = data;
-    console.log("Request: ", req)
-    console.log("Req data: ", req.data)
-    return $.ajax(req);
+    let url = makeUrl(module, endpoint)
+    data = JSON.stringify(data)
+
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            Authorization: makeAuth(auth),
+            'Content-Type': 'application/json'
+        },
+        body: data
+    })
+    .then(res => res.json())
 }
+
+// Function to return GET promise
+function get (module, endpoint, auth, query) {
+    let url = makeUrl(module, endpoint, query)
+
+    return fetch(url, {
+        method: "GET",
+        headers: {
+            Authorization: makeAuth(auth),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())   
+}
+
 
 // Function to return PUT promise
 function update (module, endpoint, auth, data) {
-    let req = makeRequest('PUT', module, endpoint, auth);
-    req.data = data;
-    return $.ajax(req);
+    let url = makeUrl(module, endpoint)
+    data = JSON.stringify(data)
+
+    return fetch(url, {
+        method: "PUT",
+        headers: {
+            Authorization: makeAuth(auth),
+            'Content-Type': 'application/json'
+        },
+        body: data
+    })
+    .then(res => res.json())
 }
 
-// Function to return DELETE promise
+// // Function to return DELETE promise
 function remove (module, endpoint, auth) {
-    console.log(`Module: ${module} Endpoint: ${endpoint} Auth: ${auth}`)
-    return $.ajax(makeRequest('DELETE', module, endpoint, auth));
+    let url = makeUrl(module, endpoint)
+
+    return fetch(url, {
+        method: "DELETE",
+        headers: {
+            Authorization: makeAuth(auth),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+
 }
 
 export default {

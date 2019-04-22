@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import requester from './../../infrastructure/requester'
+import requester from '../../infrastructure/requester'
 import observer from './../../infrastructure/observer'
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
@@ -37,6 +37,8 @@ export default class AllAlbums extends Component {
 
         requester.get('user', sessionStorage.getItem('id'), 'kinvey', )
             .then(data => {
+
+                console.log("Favourites: ", data.favourites)
 
                 let localFavourites = data.favourites || [];
 

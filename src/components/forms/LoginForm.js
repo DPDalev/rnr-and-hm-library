@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import observer from './../../infrastructure/observer'
-import requester from './../../infrastructure/requester';
+import requester from '../../infrastructure/requester';
 import '../../styles/forms.css'
 
 export default class LoginForm extends Component {
@@ -42,19 +42,19 @@ export default class LoginForm extends Component {
         }
 
         requester.post('user', 'login', 'basic', userdata)
+            // .then(res => res.json())
             .then((data) => {
                 sessionStorage.setItem('authtoken', data._kmd.authtoken);
                 sessionStorage.setItem('username', this.state.user.username);
                 sessionStorage.setItem('id', data._id)
-
+                
                 this.props.history.push('/home')
 
                 observer.trigger(observer.events.notification, {type: 'success', message: 'You successfully logged in!'})
                 setTimeout( function () {observer.trigger(observer.events.hide)}, 3000)
-                
             })
             .catch((error) => {
-                console.log(error.status);
+                console.log("Error: ", error.status);
                 if ( error.status === 401 ) {
                     this.setState({
                         error: 'Invalid credentials!'
